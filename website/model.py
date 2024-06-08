@@ -1,9 +1,5 @@
-from .config import app
-import flask_sqlalchemy as sqlalchemy
-
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:@localhost/users'
-db = sqlalchemy.SQLAlchemy(app)
-
+from . import db
+from flask_login import UserMixin
 class TempatWisata(db.Model):
     __tablename__ = 'tempatWisata'
     Place_Id = db.Column(db.BigInteger, primary_key=True)
@@ -21,3 +17,12 @@ class TempatWisata(db.Model):
     def __repr__(self):
         return f"{{'Place_Id': {self.Place_Id}, 'Place_Name': '{self.Place_Name}', 'Description': '{self.Description}', 'Category': '{self.Category}', 'City': '{self.City}', 'Price': {self.Price}, 'Rating': {self.Rating}, 'Time_Minutes': '{self.Time_Minutes}', 'Coordinate': '{self.Coordinate}', 'Lat': {self.Lat}, 'Long': {self.Long}}}"
 
+class User(UserMixin, db.Model):
+    id = db.Column(db.BigInteger, primary_key=True)
+    Nama_lengkap = db.Column(db.String(60), nullable=False)
+    Email = db.Column(db.String(60), nullable=False)
+    Password = db.Column(db.String(200), nullable=False)
+    def get_id(self):
+        return str(self.id)
+    def __repr__(self):
+        return f"{{'id': {self.id}, 'Nama_lengkap': '{self.Nama_lengkap}', 'Email': '{self.Email}' }}"

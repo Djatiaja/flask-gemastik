@@ -7,8 +7,6 @@
 
 ## Installation
 
-Install my-project with npm
-
 ```bash
   pip install -r requirement.txt
 ```

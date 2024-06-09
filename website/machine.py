@@ -1,9 +1,12 @@
 import pickle
 from website.model import TempatWisata
+import os
 
-cosine_similiarity = pickle.load(open('website/Content_recomendation.pkl', 'rb'))
+current_dir = os.path.dirname(os.path.abspath(__file__))
+pkl_file_path = os.path.join(current_dir, 'Content_recomendation.pkl')
+cosine_similarity = pickle.load(open(pkl_file_path, 'rb'))
 
-def get_recommendation(idx, cosine_similiarity=cosine_similiarity):
+def get_recommendation(idx, cosine_similiarity=cosine_similarity):
     similiarity_score = list(enumerate(cosine_similiarity[idx]))
     similiarity_score = sorted(similiarity_score, key=lambda x: x[1], reverse=True)
     similiarity_score = similiarity_score[1:11]

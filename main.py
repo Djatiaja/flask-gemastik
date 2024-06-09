@@ -6,7 +6,6 @@ if __name__ == '__main__':
     app = create_app()
     with app.app_context():
         db.create_all()
-    app.run(debug=True)
 
 @app.route('/tempat_wisata/<int:tempat_wisata_id>')
 def get_tempat_wisata(tempat_wisata_id):
@@ -18,3 +17,5 @@ def get_recommendation(tempat_wisata_id):
     data= machine.get_recommendation(tempat_wisata_id)
     return data
 
+
+app.run(debug=True)

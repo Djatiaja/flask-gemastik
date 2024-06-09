@@ -11,7 +11,7 @@ def create_user():
     email_exists = User.query.filter_by(Email=data['Email']).first()
     if email_exists:
         return 'Email already exists'
-    user = User(Nama_lengkap=data['Nama_lengkap'], Email=data['Email'], Password=generate_password_hash(data['Password'], method="pbkdf2:sha256"))
+    user = User(Nama_lengkap=data['Nama_lengkap'], Email=data['Email'], Password=generate_password_hash(data['Password'], method="pbkdf2:sha256"), Jenis_kelamin=data['Jenis_kelamin'], Tangga_lahir=data['Tangga_lahir'])
     db.session.add(user)
     db.session.commit()
     return user.__repr__()
